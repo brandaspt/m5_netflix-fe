@@ -1,0 +1,9 @@
+@import "../shared.scss";
+
+.category-bar {
+  .dropdown-toggle {
+    color: $primary-grey;
+    border: 1px solid $primary-grey;
+    border-radius: 3px;
+  }
+}
