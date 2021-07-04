@@ -1,11 +1,12 @@
 import CategoryBar from "../../categoryBar/CategoryBar"
-import MediaCarousel from "../../mediaCarousel/MediaCarousel"
+import MediaSection from "../../mediaSection/MediaSection"
 
 const Home = props => {
   return (
     <div>
-      <CategoryBar title="Browse" />
-      <MediaCarousel />
+      <CategoryBar title="All" />
+      <MediaSection type="movie" />
+      <MediaSection type="series" />
     </div>
   )
 }

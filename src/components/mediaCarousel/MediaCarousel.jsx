@@ -1,59 +1,32 @@
-import { Container, Carousel, Row, Col } from "react-bootstrap"
+import { useEffect, useState } from "react"
+import { Image } from "react-bootstrap"
+
+import backend from "../../backend/backend"
 
 import "./styles.scss"
 
-const MediaCarousel = () => {
+const MediaCarousel = ({ type, onSelectMedia }) => {
+  const [media, setMedia] = useState([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await backend.get(`/media/?type=${type}`)
+      setMedia(data)
+    }
+    fetchData()
+  }, [type])
+
   return (
-    <Carousel className="media-carousel" indicators={false}>
-      <Carousel.Item>
-        <Row>
-          <Col md={3} className="px-1">
-            <img className="d-block w-100" src="https://via.placeholder.com/800x400.png" alt="First slide" />
-          </Col>
-          <Col md={3} className="px-1">
-            <img className="d-block w-100" src="https://via.placeholder.com/800x400.png" alt="First slide" />
-          </Col>
-          <Col md={3} className="px-1">
-            <img className="d-block w-100" src="https://via.placeholder.com/800x400.png" alt="First slide" />
-          </Col>
-          <Col md={3} className="px-1">
-            <img className="d-block w-100" src="https://via.placeholder.com/800x400.png" alt="First slide" />
-          </Col>
-        </Row>
-      </Carousel.Item>
-      <Carousel.Item>
-        <Row>
-          <Col md={3}>
-            <img className="d-block w-100" src="https://via.placeholder.com/800x400.png" alt="First slide" />
-          </Col>
-          <Col md={3}>
-            <img className="d-block w-100" src="https://via.placeholder.com/800x400.png" alt="First slide" />
-          </Col>
-          <Col md={3}>
-            <img className="d-block w-100" src="https://via.placeholder.com/800x400.png" alt="First slide" />
-          </Col>
-          <Col md={3}>
-            <img className="d-block w-100" src="https://via.placeholder.com/800x400.png" alt="First slide" />
-          </Col>
-        </Row>
-      </Carousel.Item>
-      <Carousel.Item>
-        <Row>
-          <Col md={3}>
-            <img className="d-block w-100" src="https://via.placeholder.com/800x400.png" alt="First slide" />
-          </Col>
-          <Col md={3}>
-            <img className="d-block w-100" src="https://via.placeholder.com/800x400.png" alt="First slide" />
-          </Col>
-          <Col md={3}>
-            <img className="d-block w-100" src="https://via.placeholder.com/800x400.png" alt="First slide" />
-          </Col>
-          <Col md={3}>
-            <img className="d-block w-100" src="https://via.placeholder.com/800x400.png" alt="First slide" />
-          </Col>
-        </Row>
-      </Carousel.Item>
-    </Carousel>
+    <div className="media-row">
+      {media.map(item => (
+        <div className="item-container" key={item.imdbID}>
+          <Image src={item.Poster} />
+          <div className="arrow-container" onClick={() => onSelectMedia(item)}>
+            <i className="fas fa-chevron-down"></i>
+          </div>
+        </div>
+      ))}
+    </div>
   )
 }
 
