@@ -1,11 +1,18 @@
+@import "../shared.scss";
+
 .media-details {
-  .content-container {
+  padding-bottom: 50px;
+
+  h2 {
     color: white;
-    p {
-      font-size: 1.2em;
-    }
-    button {
-      width: 200px;
-    }
+  }
+
+  p {
+    font-size: 1.2em;
+    color: $primary-grey;
+  }
+
+  button {
+    font-size: 1.3em;
   }
 }
