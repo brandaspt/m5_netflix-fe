@@ -6,6 +6,8 @@
     padding: 0 20px;
     width: 100%;
     overflow-y: scroll;
+    border-top: 1px dotted $primary-grey;
+    border-bottom: 1px dotted $primary-grey;
   }
   .stars {
     font-size: 1.3em;
